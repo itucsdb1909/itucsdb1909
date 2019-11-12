@@ -1,0 +1,58 @@
+{%  extends "layout.html" %}
+{% block title %} Welcome to Anthology! {% endblock %}
+{% block content %}
+    <div class="w3-cell-row">
+        <div class ="w3-cell-column">
+            <div class="w3-bar w3-text-black w3-large w3-cell">
+                 <a href="/mylists/books/add"><button class="w3-bar-item w3-button w3-center"><b>Add</b></button></a>
+                 <a href="/mylists/books/update"><button class="w3-bar-item w3-button w3-center"><b>Update</b></button></a>
+                 <a href="/mylists/books/delete"><button class="w3-bar-item w3-button w3-center"><b>Delete</b></button></a>
+            </div>
+        </div>
+     </div>
+        {#   START - List books in DB          #}
+            <div class="w3-container">
+
+      {% if books %}
+      <table class="w3-table-all">
+        <thead>
+          <tr class="w3-orange">
+            <th>#</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Number of Pages</th>
+            <th>Publisher</th>
+            <th>Year</th>
+            <th>Add to Your List</th>
+          </tr>
+        </thead>
+           {% for book in books %}
+        <tr class="w3-text-black">
+          <td>{{ book[0] }}</td>
+          <td>{{ book[1] }}</td>
+          <td>{{ book[2] }}</td>
+          <td>{{ book[3] }}</td>
+          <td>{{ book[4] }}</td>
+          <td>{{ book[5] }}</td>
+
+            <form method=post>
+
+                 {# get book id#}
+
+                <td>
+                    <input type="hidden" name="book_id" value="{{ book[0] }}">
+                    <input type="hidden" name="user_id" value="{{ current_user[0] }}">
+                    <input type=submit value="Add">
+                </td>
+            </form>
+
+
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+        {% endif %}
+        {#            END #}
+
+
+{% endblock %}

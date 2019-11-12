@@ -1,0 +1,105 @@
+{%  extends "layout.html" %}
+{% block title %} Welcome to Anthology! {% endblock %}
+
+{% block content %}
+<div class="row">
+        <h4><b>YOUR LISTS</b></h4>
+        <h5><b>poems</b></h5>
+        {#        List poems here#}
+             {#   START - List poems in DB          #}
+            <div class="w3-container">
+
+      {% if user_poems %}
+      <table class="w3-table-all">
+        <thead>
+          <tr class="w3-orange">
+            <th>#</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+           {% for poem in user_poems %}
+        <tr class="w3-text-black">
+          <td>{{ poem[0] }}</td>
+          <td>{{ poem[1] }}</td>
+          <td>{{ poem[2] }}</td>
+          <td>{{ poem[3] }}</td>
+          <td>{{ poem[4] }}</td>
+          <td>{{ poem[5] }}</td>
+
+            <form method=post>
+
+                 {# get poem id#}
+
+                <td>
+                    <input type="hidden" name="poem_id" value="{{ poem[0] }}">
+                    <input type="hidden" name="user_id" value="{{ current_user[0] }}">
+                    <input type="hidden" name="book_id" value="0">
+                    <input type=submit value="Delete">
+                </td>
+            </form>
+
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+        {% endif %}
+        {#            END #}
+    </div>
+    <br><br><br><br>
+    <div class="row">
+        <h5><b>books</b></h5>
+        {#        List books here#}
+             {#   START - List books in DB          #}
+            <div class="w3-container">
+
+      {% if user_books %}
+      <table class="w3-table-all">
+        <thead>
+          <tr class="w3-orange">
+            <th>#</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Number of Pages</th>
+            <th>Publisher</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+           {% for book in user_books %}
+        <tr class="w3-text-black">
+          <td>{{ book[0] }}</td>
+          <td>{{ book[1] }}</td>
+          <td>{{ book[2] }}</td>
+          <td>{{ book[3] }}</td>
+          <td>{{ book[4] }}</td>
+          <td>{{ book[5] }}</td>
+
+            <form method=post>
+
+                 {# get book id#}
+
+                <td>
+                    <input type="hidden" name="book_id" value="{{ book[0] }}">
+                    <input type="hidden" name="user_id" value="{{ current_user[0] }}">
+                    <input type="hidden" name="poem_id" value="0">
+                    <input type=submit value="Delete">
+                </td>
+            </form>
+
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+        {% endif %}
+        {#            END #}
+
+    </div>
+
+</div>
+
+{% endblock %}
