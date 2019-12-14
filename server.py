@@ -1,7 +1,7 @@
 # Anthology app
 # Developed by Mehmet Gencay Ertürk
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, url_for,redirect
 from flask_bootstrap import Bootstrap
 from flask_login import login_user,LoginManager
 from forms import *
@@ -161,7 +161,7 @@ def signup_page():
         user = User(form.username.data, form.name.data, form.surname.data, form.email.data,
                     form.password.data, form.age.data, form.gender.data)
         insert_user(user)
-        return redirect('/mylists')
+        return redirect(url_for('/mylists')))
 
     return render_template("signup.html", form=form)
 
