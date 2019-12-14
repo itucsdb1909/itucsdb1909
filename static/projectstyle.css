@@ -1,0 +1,28 @@
+h1 {
+    color: blue;
+}
+
+header {
+    text-align: right;
+}
+
+html,
+body {
+    height: 80%;
+    position: relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 40px;
+}
+
+footer {
+    color: red;
+    clear: both;
+    position: absolute;
+    bottom: 1;
+    width: 80%;
+    height: 75px;
+}
