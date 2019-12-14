@@ -1,33 +1,45 @@
 {%  extends "layout.html" %}
-{% macro render_field(field) %}
-  <dt>{{ field.label }}
-  <dd>{{ field(**kwargs)|safe }}
-  {% if field.errors %}
-    <ul class=errors>
-    {% for error in field.errors %}
-      <li>{{ error }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-  </dd>
-{% endmacro %}
 {% block title %} Sign-up to Anthology {% endblock %}
 {% block content %}
-        <h1>Sign-up to Anthology</h1>
-    <form method=post>
-  <dl>
-    {{ render_field(form.username) }}
-    {{ render_field(form.email) }}
-    {{ render_field(form.name) }}
-    {{ render_field(form.surname) }}
-    {{ render_field(form.age) }}
-    {{ render_field(form.gender) }}
-    {{ render_field(form.password) }}
-    {{ render_field(form.confirm) }}
-  </dl>
-  <p><input type=submit value=Register>
+    <h1>Sign Up To Anthology</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </p>
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.surname.label }}<br>
+            {{ form.surname(size=32) }}
+        </p>
+         <p>
+            {{ form.age.label }}<br>
+            {{ form.age(size=32) }}
+        </p>
+        <p>
+            {{ form.gender.label }}<br>
+            {{ form.gender(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% if error %}
+        <p class="error">ERROR: {{ error }}</p>
+    {% endif %}
 
-{% endblock %}
-
-{% block footer %}
 {% endblock %}
