@@ -78,6 +78,7 @@ def initialize(url):
 
 
 if __name__ == "__main__":
+    url = os.getenv("DATABASE_URL")
     initialize(url)
     # tab.insert_user("username", "name", "surname", "password", 70, "gender")
 # jdbc:postgresql://localhost:32768/itucsdb
