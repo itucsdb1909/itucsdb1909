@@ -37,10 +37,10 @@ def initialize():
     USER_ID INTEGER REFERENCES USERS(id) ON DELETE CASCADE,
     POEM_ID INTEGER REFERENCES POEM(id) ON DELETE CASCADE,
     PRIMARY KEY(USER_ID, POEM_ID))""")
+    connection=dbapi2.connect(dsn)
+    cursor = connection.cursor()
     for statement in init_statements:
-        connection=dbapi2.connect(dsn)
-        cursor = connection.cursor()
         cursor.execute(statement)
         connection.commit()
-        cursor.close()
-        connection.close()
+    cursor.close()
+    connection.close()
