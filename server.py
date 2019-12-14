@@ -52,7 +52,7 @@ def books_page():
         book_id = request.form['book_id']
         user_id = request.form['user_id']
         userlist_add_book(user_id, book_id)
-        return redirect('/mylists')
+        return redirect(url_for('/mylists')))
 
     return render_template("books.html", books=sorted(books))
 
@@ -150,7 +150,7 @@ def signin_page():
             return redirect('/signin')
         login_user(user, remember=form.remember_me.data)
         print("User signed successfully")
-        return redirect('/mylists')
+        return redirect(url_for('/mylists')))
     return render_template("signin.html", form=form)
 
 
