@@ -16,7 +16,7 @@ login = LoginManager(app)
 from models import User, Book, Poem
 @app.route("/")
 def home_page():
-#   tab.insert_user("username", "name", "surname", "password", 70, "gender")
+    initialize()
     return render_template("homepage.html")
 
 
