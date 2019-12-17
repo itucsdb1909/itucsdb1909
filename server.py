@@ -90,7 +90,7 @@ def mylists_page():
                            user_books=user_books)
 
 
-@app.route('/mylists/books', methods=['GET', 'POST'])
+@app.route('/books', methods=['GET', 'POST'])
 def books_page():
     books = get_books()
 
@@ -103,7 +103,7 @@ def books_page():
     return render_template("books.html", books=sorted(books))
 
 
-@app.route('/mylists/books/add', methods=['GET', 'POST'])
+@app.route('/books/add', methods=['GET', 'POST'])
 def books_add_page():
     form = BookAddForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -115,7 +115,7 @@ def books_add_page():
     return render_template("add_books.html", form=form)
 
 
-@app.route('/mylists/books/update', methods=['GET', 'POST'])
+@app.route('/books/update', methods=['GET', 'POST'])
 def books_update_page():
     form = BookUpdateForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -127,7 +127,7 @@ def books_update_page():
     return render_template("update_books.html", form=form)
 #
 #
-@app.route('/mylists/books/delete', methods=['GET', 'POST'])
+@app.route('/books/delete', methods=['GET', 'POST'])
 def books_delete_page():
     form = BookDeleteForm(request.form)
     id = form.book_id.data
@@ -137,7 +137,7 @@ def books_delete_page():
     return render_template("delete_books.html", form=form)
 
 
-@app.route('/mylists/poems', methods=['GET', 'POST'])
+@app.route('/poems', methods=['GET', 'POST'])
 def poems_page():
     poems = get_poems()
 
@@ -149,7 +149,7 @@ def poems_page():
 
     return render_template("poems.html", poems=sorted(poems))
 
-@app.route('/mylists/poems/add', methods=['GET', 'POST'])
+@app.route('/poems/add', methods=['GET', 'POST'])
 def poems_add_page():
     form = PoemAddForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -160,7 +160,7 @@ def poems_add_page():
     return render_template("add_poems.html", form=form)
 
 
-@app.route('/mylists/poems/update', methods=['GET', 'POST'])
+@app.route('/poems/update', methods=['GET', 'POST'])
 def poems_update_page():
     form = PoemUpdateForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -173,7 +173,7 @@ def poems_update_page():
     return render_template("update_poems.html", form=form)
 
 
-@app.route('/mylists/poems/delete', methods=['GET', 'POST'])
+@app.route('/poems/delete', methods=['GET', 'POST'])
 def poems_delete_page():
     form = PoemDeleteForm(request.form)
     id = form.poem_id.data
@@ -215,4 +215,4 @@ def signout_page():
     logout_user()
     return redirect('/')
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
