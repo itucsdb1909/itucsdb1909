@@ -135,7 +135,7 @@ def get_books():
 
 
 def insert_book(book):
-    query ='INSERT INTO book (NAME, AUTHOR, NUMBER_OF_PAGES, PUBLISHER, CATEGORY) VALUES(%s, %s, %s, %s, %s)'
+    query ='INSERT INTO BOOK (NAME, AUTHOR, NUMBER_OF_PAGES, PUBLISHER, CATEGORY) VALUES(%s, %s, %s, %s, %s)'
     url = get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
@@ -147,7 +147,7 @@ def insert_book(book):
 
 
 def update_book(book_id, book):
-    query = "UPDATE book " \
+    query = "UPDATE BOOK " \
             "SET NAME = %s, " \
             "AUTHOR = %s, " \
             "NUMBER_OF_PAGES = %s, " \
@@ -231,5 +231,5 @@ def delete_poem(poem_id):
 
         
 def get_db_url():
-    url = """user='postgres' password='mge19' host='localhost' port=5432 dbname='Anthology'"""
+    url = "postgres://itucs:itucspw@localhost:32768/itucsdb"
     return url
