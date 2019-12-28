@@ -71,14 +71,23 @@ INIT_STATEMENTS = [
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
+        i = 0
         cursor = connection.cursor()
-        for statement in INIT_STATEMENTS:
+        for statement in INIT_STATEMENTS2:
             cursor.execute(statement)
+        for statement in INIT_STATEMENTS:
+            print(i)
+            i = i + 1
+            cursor.execute(statement)
+
         cursor.close()
 
 
 if __name__ == "__main__":
-    url = """user='postgres' password='mge19' host='localhost' port=5432 dbname='Anthology'"""
-    initialize(url)
-    # tab.insert_user("username", "name", "surname", "password", 70, "gender")
-# jdbc:postgresql://localhost:32768/itucsdb
+
+    url = "postgres://itucs:itucspw@localhost:32768/itucsdb"#DATABASE_URL#
+    print(url)
+    if url is None:
+        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
+        sys.exit(1)
+initialize(url)
