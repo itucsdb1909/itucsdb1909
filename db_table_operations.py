@@ -228,8 +228,9 @@ def delete_poem(poem_id):
         cursor.close()
         print("poem with id " + poem_id + " deleted")
         # return id
-
-        
 def get_db_url():
-    url = "postgres://itucs:itucspw@localhost:32768/itucsdb"
+    url = os.getenv("DATABASE_URL")
+    if url is None:
+        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
+        sys.exit(1)
     return url
